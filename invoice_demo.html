@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<style type="text/css">
+	.tcolor{
+		background-color: lightgray;
+	}
+</style>
+	
+
+
+</head>
+<body>
+
+	<!-- Address area -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>INVOICE DEMO</h1>
+			</div>
+
+			<!-- From area -->
+			<div class="col-9">
+				<h3>From</h3>
+				<p>A2Z Infotechs</p>
+				<p>Address : Balikashram Road,Ahmednagar,Maha-414001</p>
+			</div>
+
+
+			<!-- To area -->
+			<div class="col-3">
+				<div class="row">
+						<h3>To,</h3>
+						<input type="text" name="username" placeholder="UserName..." class="p-1">
+						<textarea type="text" placeholder="Enter User Address" class="p-1 mt-4"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Billing Table -->
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-bordered shadow text-center ">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Item No.</th>
+							<th>Item Name</th>
+							<th>Qnt</th>
+							<th>Price</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr>
+							<td class="bg-secondary-subtle"><button type="button" class="btn btn-danger">D</button></td>
+
+							<td class="bg-secondary-subtle"><input type="number"></td>
+
+							<td class="bg-secondary-subtle"><input type="text"></td>
+
+							<td class="bg-secondary-subtle"><input type="number" onkeyup="add()" id="qty" ></td>
+
+							<td class="bg-secondary-subtle"><input type="number"onkeyup="add()" id="price"></td>
+
+							<td class="bg-secondary-subtle"><input type="number" id="total" class="bg-body-secondary" readonly ></td>
+						</tr>
+
+
+
+
+						<tr>
+							<td colspan="6"><button class="btn btn-warning">Add More</button></td>
+						</tr>
+
+
+
+						<tr>
+							<td colspan="4" >
+								<h1>Notes :-</h1>
+								<textarea cols="100" rows="10" ></textarea>
+							</td>
+							<td colspan="2">
+								Sub Total :-
+								<input type="text" id="subtotal" class="bg-body-secondary ms-2" readonly><br><br>
+								Tax.(%) :-
+								<input type="text" id="tax" onkeyup="add()" class="ms-4"><br><br>
+								Discount(%):-
+								<input type="text" id="discount" onkeyup="add()" class="ms-3"><br><br>
+								Tax Total :-
+								<input type="text" id="totax" class="bg-body-secondary ms-3" readonly><br><br>
+								Net Total :-
+								<input type="text" id="nettot" class="bg-body-secondary ms-3" readonly><br><br>
+								Paid :-
+								<input type="text" id="paid" onkeyup="add()" class="ms-3"><br><br>
+								Due :-
+								<input type="text" id="due" class="bg-body-secondary ms-3" readonly><br><br>
+
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		function add(){
+			var a=Number(document.getElementById('qty').value);
+			var b=Number(document.getElementById('price').value);
+			var c=a*b;
+
+			document.getElementById('total').value=c
+			document.getElementById('subtotal').value=c
+
+			var tax=Number(document.getElementById('tax').value);
+			var discount=Number(document.getElementById('discount').value);
+
+			var totax=c*(tax/100);
+			document.getElementById('totax').value=totax;
+
+			
+
+
+			var nettot=c+totax;
+			document.getElementById('nettot').value=nettot-(nettot*discount/100);
+			var paid=Number(document.getElementById('paid').value);
+			document.getElementById('due').value=c+totax-paid;
+		}
+	</script>
+
+
+
+</body>
+</html>
